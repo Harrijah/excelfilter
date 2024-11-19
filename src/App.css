@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f5f9;
+  color: #333;
+}
+
+.navigation{
+  display: block;
+  position: relative;
+  width: 100%;
+  background-color: #b4c7e7;
+  display: flex;
+  height: fit-content;
+  .linkcontainer{
+    height: fit-content;
+    a{
+      display: inline-block;
+      height: 60px;
+      padding: 20px;
+      text-decoration: none;
+    
+    }
+  }
+}
+a:hover{
+  background-color: whitesmoke;
+  color: "fff";
+}
+.app {
+  width: 85vw;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow-x: scroll;
+}
+
+h1 {
+  color: #6d9eeb;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.file-input {
+  padding: 8px;
+  border: 1px solid #b4c7e7;
+  border-radius: 4px;
+  background-color: #e6eef8;
+}
+
+.button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #6d9eeb;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #4a8cd4;
+}
+
+.filters label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Organisation des filtres */
+
+.filters .filter-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.filters .filter-row.single {
+  justify-content: flex-start;
+}
+
+.filters .filter-row.multiple input {
+  flex: 1;
+}
+
+.filters input[type="text"] {
+  padding: 8px;
+  border: 1px solid #b4c7e7;
+  border-radius: 4px;
+  background-color: #e6eef8;
+}
+
+/* Tableau des données */
+
+.data-table {
+  width: 80vw;
+  border-collapse: collapse;
+}
+
+.montableau{
+  height: 70vh;
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+.data-table th, .data-table td {
+  padding: 12px;
+  border: 1px solid #d9e1f2;
+  text-align: left;
+  max-width: 150px !important;
+  min-width: 100px;
+}
+
+.data-table th {
+  background-color: #6d9eeb;
+  color: white;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #f2f5f9;
+}
+
+.remove-filter-button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  border: none;
+  background-color: #f76c6c;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-filter-button:hover {
+  background-color: #ff4a4a;
+}
+
