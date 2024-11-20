@@ -6,6 +6,7 @@ import Evaluate from "./Evaluate";
 import Filter from "./Filter";
 import Searchdistance from "./Searchdistance";
 import DistanceCalculator from "./Distancecalculator";
+import Otherlinks from "./Otherlinks";
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Searchlink />} ></Route>
+        <Route path='/otherlinks' element={<Otherlinks />}></Route>
         <Route path='/evaluate' element={<Evaluate />}></Route>
         <Route path="/filter" element={<Filter />}></Route>
         <Route path='/searchdistance' element={<Searchdistance />}></Route>

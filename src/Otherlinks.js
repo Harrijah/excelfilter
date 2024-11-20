@@ -3,7 +3,7 @@ import * as XLSX from "xlsx";
 import axios from "axios";
 import Navigation from "./Navigation";
 
-const Searchlink = () => {
+const Otherlinks = () => {
   const [excelData, setExcelData] = useState([]);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -12,8 +12,9 @@ const Searchlink = () => {
   const [accountColumn, setAccountColumn] = useState("");
   const [activityColumn, setActivityColumn] = useState("");
 
-  const API_KEY = process.env.REACT_APP_MY_API_KEY01;
-  const CX = "023792d341da34d5d";
+  const API_KEY = process.env.REACT_APP_MY_API_KEY02;
+//   const CX = "96fab7e8426be4124"; // google : newlinkedin (recherche sur le web)
+  const CX = "662deb88a41df447e"; // google : testlinkedin (sites spécifiques)
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -41,8 +42,7 @@ const Searchlink = () => {
     const searchResults = [];
 
     for (let i = 0; i < excelData.length; i++) {
-      const searchQuery = `${excelData[i][accountColumn]} ${excelData[i][activityColumn]}`;
-      console.log(API_KEY);
+      const searchQuery = `${excelData[i][accountColumn]}`;
 
       try {
         const response = await axios.get("https://www.googleapis.com/customsearch/v1", {
@@ -50,25 +50,25 @@ const Searchlink = () => {
             key: API_KEY,
             cx: CX,
             q: searchQuery,
-            // hq: thirdvar,
+            hq: `${excelData[i][activityColumn]}`,
             lr: "lang_fr",
-            gl: 'ch',
+            gl: 'fr',
           },
         });
 
         const urls = response.data.items
-          ? response.data.items.slice(0, 2).map(item => item.link)
-          : ["Aucun site trouvé", "Aucun site trouvé"];
+          ? response.data.items.slice(0, 1).map(item => item.link)
+          : ["Aucun site trouvé"];
         
-        excelData[i]["site web 1"] = urls[0];
-        excelData[i]["site web 2"] = urls[1];
+        excelData[i]["linkedin"] = urls[0];
+        // excelData[i]["site web 2"] = urls[1];
         
         searchResults.push({ query: searchQuery, urls });
 
       } catch (error) {
         console.error("Erreur lors de la recherche :", error);
         excelData[i]["site web 1"] = "Erreur lors de la recherche";
-        excelData[i]["site web 2"] = "Erreur lors de la recherche";
+        // excelData[i]["site web 2"] = "Erreur lors de la recherche";
       }
 
       await delay(200);
@@ -91,7 +91,7 @@ const Searchlink = () => {
     <div className="container">
       <Navigation />
       <div className="app">
-        <h1>Recherche de sites web</h1>
+        <h1>Recherche de liens</h1>
 
         <div className="controls">
           <input type="file" accept=".xlsx, .xls" onChange={handleFileUpload} className="file-input" />
@@ -108,7 +108,7 @@ const Searchlink = () => {
                 </select>
               </label>
               <label>
-                Type d'activité:
+                Autre info:
                 <select value={activityColumn} onChange={(e) => setActivityColumn(e.target.value)}>
                   <option value="">Sélectionner une colonne</option>
                   {columns.map((col) => (
@@ -132,8 +132,8 @@ const Searchlink = () => {
               <thead>
                 <tr>
                   <th>Recherche</th>
-                  <th>URL 1</th>
-                  <th>URL 2</th>
+                  <th>linkedin</th>
+                  {/* <th>URL 2</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -162,4 +162,4 @@ const Searchlink = () => {
   );
 };
 
-export default Searchlink;
+export default Otherlinks;

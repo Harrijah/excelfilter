@@ -12,8 +12,6 @@ const Searchdistance = () => {
     const [adresseColonne2, setAdresseColonne2] = useState(""); // Colonne 2 pour adresse
     const [loading, setLoading] = useState(false);
 
-    const GOOGLE_API_KEY = process.env.MY_API_KEY01;
-
     // ----------- Fonction pour charger le fichier Excel
     const handleFileUpload = (event) => {
         const fichierExcel = event.target.files[0];
