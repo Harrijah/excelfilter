@@ -11,7 +11,7 @@ const Searchlink = () => {
   const [accountColumn, setAccountColumn] = useState("");
   const [activityColumn, setActivityColumn] = useState("");
 
-  const API_KEY = "AIzaSyCGCcE2Xk-MhhaV9-hb8KoexuZoEupGo1I";
+  const API_KEY = process.env.MY_API_KEY01;
   const CX = "023792d341da34d5d";
 
   const handleFileUpload = (event) => {

@@ -11,8 +11,6 @@ const DistanceCalculator = () => {
     const [results, setResults] = useState([]); // Tableau pour stocker les résultats
     const [loading, setLoading] = useState(false);
 
-    const GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY";
-
     // Fonction pour calculer la durée entre l'adresse de départ et l'adresse d'arrivée
     const calculateDuration = async () => {
         if (!adresseDepart || !adresseArrivee) {

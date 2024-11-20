@@ -19,7 +19,7 @@ function Evaluate() {
   const [keywords, setKeywords] = useState(Array(10).fill("")); // 10 champs pour les mots-clés
   const [loading, setLoading] = useState(false);
 
-  const API_KEY = "AIzaSyCGCcE2Xk-MhhaV9-hb8KoexuZoEupGo1I";
+  const MY_API_KEY01 = process.env.MY_API_KEY01;
   const CX = "80079e6aaa2014fb8";
 
    // Fonction pour lire le fichier Excel
@@ -143,7 +143,7 @@ function Evaluate() {
                 "https://www.googleapis.com/customsearch/v1",
                 {
                   params: {
-                    key: API_KEY,
+                    key: MY_API_KEY01,
                     cx: CX,
                     q: searchQuery,
                     hq: searchQuery02,
