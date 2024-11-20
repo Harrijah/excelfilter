@@ -69,7 +69,11 @@ const Searchdistance = () => {
 
     //     setLoading(false);
     //     setExcelData(results);
-    // };// ----------- Fonction pour calculer la distance
+
+    
+    // };
+    
+    // ----------- Fonction pour calculer la distance
     
     // Fonction pour calculer la distance avec un délai entre chaque requête
     const calculateDistances = async () => {
@@ -89,6 +93,34 @@ const Searchdistance = () => {
             // Fonction auto-exécutante pour gérer le contexte `i`
             (
                 async (index) => {
+                    // setTimeout(async () => {
+                    //     try {
+                    //         // Construire l'URL vers le contrôleur PHP
+                    //         const url = `https://api.axel.mg/getduration?origins=${encodeURIComponent(departAdresse)}&destinations=${encodeURIComponent(adresseLigne)}`;
+                            
+                    //         const response = await fetch(url, {
+                    //             method: "GET"
+                    //         });
+    
+                    //         if (!response.ok) {
+                    //             throw new Error(`Erreur HTTP! Statut: ${response.status}`);
+                    //         }
+    
+                    //         const data = await response.json();
+                    //         const duration = data.rows[0].elements[0].duration?.text || "N/A";
+                    //         results[index] = { ...ligne, "Distance (min)": duration };
+                    //     } catch (error) {
+                    //         console.error("Erreur lors de la requête de calcul de distance :", error);
+                    //         results[index] = { ...ligne, "Distance (min)": "Erreur" };
+                    //     }
+    
+                    //     // Mettre à jour l'état avec les résultats après le dernier élément
+                    //     if (index === excelData.length - 1) {
+                    //         setExcelData(results);
+                    //         setLoading(false);
+                    //     }
+                    // }, delay);
+
                     setTimeout(async () => {
                         try {
                             // Construire l'URL vers le contrôleur PHP
@@ -97,25 +129,32 @@ const Searchdistance = () => {
                             const response = await fetch(url, {
                                 method: "GET"
                             });
-    
+                    
                             if (!response.ok) {
                                 throw new Error(`Erreur HTTP! Statut: ${response.status}`);
                             }
-    
+                    
                             const data = await response.json();
-                            const duration = data.rows[0].elements[0].duration?.text || "N/A";
+                            let duration = data.rows[0].elements[0].duration?.text || "N/A";
+                    
+                            // Vérifier et traiter la durée
+                            if (duration.includes("hour") || parseInt(duration) > 35) {
+                                duration = "hors cible";
+                            }
+                    
                             results[index] = { ...ligne, "Distance (min)": duration };
                         } catch (error) {
                             console.error("Erreur lors de la requête de calcul de distance :", error);
                             results[index] = { ...ligne, "Distance (min)": "Erreur" };
                         }
-    
+                    
                         // Mettre à jour l'état avec les résultats après le dernier élément
                         if (index === excelData.length - 1) {
                             setExcelData(results);
                             setLoading(false);
                         }
                     }, delay);
+                    
     
                     // Incrémenter le délai pour la prochaine requête
                     delay += 500; // Par exemple, 1 seconde entre chaque requête
