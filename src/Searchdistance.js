@@ -122,7 +122,8 @@ const Searchdistance = () => {
                     setTimeout(async () => {
                         try {
                             // Construire l'URL vers le contrôleur PHP
-                            const url = `https://api.axel.mg/getduration?origins=${encodeURIComponent(departAdresse)}&destinations=${encodeURIComponent(adresseLigne)}`;
+                            // const url = `https://api.axel.mg/getduration?origins=${encodeURIComponent(departAdresse)}&destinations=${encodeURIComponent(adresseLigne)}`;
+                            const url = `http://localhost:8080/getDuration?origins=${encodeURIComponent(departAdresse)}&destinations=${encodeURIComponent(adresseLigne)}`;
                             
                             const response = await fetch(url, {
                                 method: "GET"
@@ -136,9 +137,9 @@ const Searchdistance = () => {
                             let duration = data.rows[0].elements[0].duration?.text || "N/A";
                     
                             // Vérifier et traiter la durée
-                            if (duration.includes("hour") || parseInt(duration) > 35) {
-                                duration = "hors cible";
-                            }
+                            // if (duration.includes("hour") || parseInt(duration) > 35) {
+                            //     duration = "hors cible";
+                            // }
                     
                             results[index] = { ...ligne, "Distance (min)": duration };
                         } catch (error) {
