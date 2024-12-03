@@ -122,8 +122,8 @@ const Searchdistance = () => {
                     setTimeout(async () => {
                         try {
                             // Construire l'URL vers le contrôleur PHP
-                            // const url = `https://api.axel.mg/getduration?origins=${encodeURIComponent(departAdresse)}&destinations=${encodeURIComponent(adresseLigne)}`;
-                            const url = `http://localhost:8080/getDuration?origins=${encodeURIComponent(departAdresse)}&destinations=${encodeURIComponent(adresseLigne)}`;
+                            const url = `https://api.axel.mg/getduration?origins=${encodeURIComponent(departAdresse)}&destinations=${encodeURIComponent(adresseLigne)}`;
+                            // const url = `http://localhost:8080/getDuration?origins=${encodeURIComponent(departAdresse)}&destinations=${encodeURIComponent(adresseLigne)}`;
                             
                             const response = await fetch(url, {
                                 method: "GET"
